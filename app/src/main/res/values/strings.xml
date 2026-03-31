@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Water Tracker</string>
+    <string name="widget_desc">Track daily water intake with 8 drops</string>
+    <string name="widget_drop_cd">Water intake drop</string>
+</resources>
