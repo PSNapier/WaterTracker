@@ -1,6 +1,7 @@
 package com.example.watertracker
 
 import android.app.PendingIntent
+import android.os.Build
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
@@ -21,7 +22,9 @@ class WaterWidget : AppWidgetProvider() {
     ) {
         ensureDailyResetIfNeeded(context)
         appWidgetIds.forEach { appWidgetId ->
-            appWidgetManager.updateAppWidget(appWidgetId, buildRemoteViews(context))
+            runCatching {
+                appWidgetManager.updateAppWidget(appWidgetId, buildRemoteViews(context))
+            }
         }
     }
 
@@ -51,6 +54,10 @@ class WaterWidget : AppWidgetProvider() {
             R.id.drop0, R.id.drop1, R.id.drop2, R.id.drop3,
             R.id.drop4, R.id.drop5, R.id.drop6, R.id.drop7
         )
+        val tapAreaIds = intArrayOf(
+            R.id.drop0_area, R.id.drop1_area, R.id.drop2_area, R.id.drop3_area,
+            R.id.drop4_area, R.id.drop5_area, R.id.drop6_area, R.id.drop7_area
+        )
 
         imageIds.forEachIndexed { index, imageViewId ->
             val isFilled = prefs.getBoolean(dropKey(index), false)
@@ -58,7 +65,7 @@ class WaterWidget : AppWidgetProvider() {
                 imageViewId,
                 if (isFilled) R.drawable.ic_drop_filled else R.drawable.ic_drop_empty
             )
-            views.setOnClickPendingIntent(imageViewId, createTapPendingIntent(context, index))
+            views.setOnClickPendingIntent(tapAreaIds[index], createTapPendingIntent(context, index))
         }
 
         return views
@@ -70,13 +77,23 @@ class WaterWidget : AppWidgetProvider() {
             putExtra(EXTRA_DROP_INDEX, index)
             // Distinct data URI ensures unique PendingIntents across launchers.
             data = Uri.parse("watertracker://drop/$index")
+            `package` = context.packageName
         }
+
+        val flags = PendingIntent.FLAG_UPDATE_CURRENT or (
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                // Some launchers are strict about mutability for widget tap broadcasts.
+                PendingIntent.FLAG_MUTABLE
+            } else {
+                PendingIntent.FLAG_IMMUTABLE
+            }
+        )
 
         return PendingIntent.getBroadcast(
             context,
             index,
             tapIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            flags
         )
     }
 
@@ -85,7 +102,8 @@ class WaterWidget : AppWidgetProvider() {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val key = dropKey(index)
         val current = prefs.getBoolean(key, false)
-        prefs.edit().putBoolean(key, !current).apply()
+        // Commit synchronously so immediate widget refresh reads latest value.
+        prefs.edit().putBoolean(key, !current).commit()
     }
 
     private fun ensureDailyResetIfNeeded(context: Context) {
@@ -99,7 +117,8 @@ class WaterWidget : AppWidgetProvider() {
                 editor.putBoolean(dropKey(i), false)
             }
             editor.putString(KEY_LAST_DATE, today)
-            editor.apply()
+            // Commit synchronously to avoid stale reads during immediate update.
+            editor.commit()
         }
     }
 

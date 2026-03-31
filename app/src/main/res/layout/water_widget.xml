@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:forceDarkAllowed="false"
     android:gravity="bottom|center_horizontal"
     android:orientation="horizontal"
     android:paddingStart="4dp"
@@ -9,83 +10,147 @@
     android:paddingEnd="4dp"
     android:paddingBottom="8dp">
 
-    <ImageView
-        android:id="@+id/drop0"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+    <FrameLayout
+        android:id="@+id/drop0_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
 
-    <ImageView
-        android:id="@+id/drop1"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+        <ImageView
+            android:id="@+id/drop0"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/drop2"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+    <FrameLayout
+        android:id="@+id/drop1_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
 
-    <ImageView
-        android:id="@+id/drop3"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+        <ImageView
+            android:id="@+id/drop1"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/drop4"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+    <FrameLayout
+        android:id="@+id/drop2_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
 
-    <ImageView
-        android:id="@+id/drop5"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+        <ImageView
+            android:id="@+id/drop2"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/drop6"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+    <FrameLayout
+        android:id="@+id/drop3_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
 
-    <ImageView
-        android:id="@+id/drop7"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="2dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/widget_drop_cd"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_drop_empty" />
+        <ImageView
+            android:id="@+id/drop3"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/drop4_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/drop4"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/drop5_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/drop5"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/drop6_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/drop6"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/drop7_area"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/drop7"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/widget_drop_cd"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_drop_empty" />
+    </FrameLayout>
 </LinearLayout>
